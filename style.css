@@ -1,1 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+#weather-info {
+    margin-bottom: 20px;
+}
+
+#history {
+    font-size: 14px;
+}
+
+.history-item {
+    cursor: pointer
+}
 
