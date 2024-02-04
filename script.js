@@ -69,6 +69,7 @@ function storeCityHistory() {
 
 // (in progress) Creates function to append the data to the DOM. 
 function displayWeather(data) {
+    console.log(data)
     forecast.innerHTML = ""
     var currentWeather = data.list[0];
     var cityName = data.city.name;
@@ -77,9 +78,10 @@ function displayWeather(data) {
     var humidity = currentWeather.main.humidity;
     var windSpeed = currentWeather.wind.speed;
     var temperature = currentWeather.main.temp;
+    weatherData.style.backgroundColor = '#3498db';
     var currentWeatherHTML = `
         <h1>Today's Weather</h1>
-        <h2>${cityName} (${currentDate.toLocaleDateString()}) <img src="http://openweathermap.org/img/wn/${iconCode}.png" alt="Weather Icon"></h2>
+        <h2>${cityName} <br> ${currentDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} <br> <img src="http://openweathermap.org/img/wn/${iconCode}.png" alt="Weather Icon"></h2>
         <p>Temperature: ${temperature} &deg; F</p>
         <p>Humidity: ${humidity}%</p>
         <p>Wind Speed: ${windSpeed} m/s</p>
@@ -94,7 +96,7 @@ function displayWeather(data) {
         var forecastTemperature = forecast.main.temp;
         return `
         <div class="forecast-item">
-            <p>${forecastDate.toLocaleDateString()}</p>
+        <p>${forecastDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
             <img src="http://openweathermap.org/img/wn/${forecastIconCode}.png" alt="Weather Icon">
             <p>Temp: ${forecastTemperature} &deg;F</p>
                     <p>Humidity: ${forecastHumidity}%</p>

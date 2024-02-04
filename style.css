@@ -10,7 +10,7 @@ body {
 }
 
 #weather-data {
-    background-color: #3498db;
+    background-color: transparent;
     color: #fff;
     padding: 20px;
     border-radius: 10px;
