@@ -20,6 +20,7 @@ body {
 .forecast {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .forecast-item {
@@ -29,9 +30,12 @@ body {
     padding: 10px;
     margin: 0 5px;
     border-radius: 8px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
 }
 
-h1, h2, p {
+h1, h2, p, img {
     justify-content: center;
     text-align: center;
     margin: 0
@@ -46,19 +50,29 @@ form {
 }
 
 #history {
-    font-size: 18px;
-    /* padding: 10px;
+    text-align: center;
     margin-top: 20px;
-    border-radius: 8px; */
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 5px;
+    border-color: black;
+    border-style: solid;
+    padding: 5px;
+    margin-bottom: 30px;
+}
+
+#history h2 {
+    font-size: 90px;
 }
 
 .history-item {
+    font-size: 20px;
     cursor: pointer;
     background-color: #ccc;
     padding: 10px;
     margin-bottom: 5px;
     border-radius: 8px;
-    display: inline-block;
+    display: block;
     margin-right: 5px;
 }
-

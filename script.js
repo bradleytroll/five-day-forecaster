@@ -13,7 +13,7 @@ var cityHistory = JSON.parse(localStorage.getItem('cityHistory')) || [];
 
 // INCOMPLETE ADD NOTES
 function displayHistory() {
-    historyDiv.innerHTML = '';
+    historyDiv.innerHTML = "History"
     cityHistory.slice(0, 10).forEach(city => {
         var historyItem = document.createElement('div');
         historyItem.classList.add('history-item');
@@ -96,7 +96,7 @@ function displayWeather(data) {
         var forecastTemperature = forecast.main.temp;
         return `
         <div class="forecast-item">
-        <p>${forecastDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+        <p>${forecastDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p> <br>
             <img src="http://openweathermap.org/img/wn/${forecastIconCode}.png" alt="Weather Icon">
             <p>Temp: ${forecastTemperature} &deg;F</p>
                     <p>Humidity: ${forecastHumidity}%</p>
