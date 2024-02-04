@@ -46,10 +46,19 @@ form {
 }
 
 #history {
-    font-size: 14px;
+    font-size: 18px;
+    /* padding: 10px;
+    margin-top: 20px;
+    border-radius: 8px; */
 }
 
 .history-item {
-    cursor: pointer
+    cursor: pointer;
+    background-color: #ccc;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-right: 5px;
 }
 
