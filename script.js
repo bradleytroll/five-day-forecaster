@@ -15,7 +15,7 @@ cityForm.addEventListener('submit', function(e) {
     }
 })
 
-// (in progress) Creates function to get weather data.
+// Creates function to get weather data. Makes request to the API and uses my apiKey to retrieve the data. The data is then set as an argument to the displayWeather function. 
 function getWeatherData(city) {
     var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`
     fetch(apiUrl)
@@ -28,6 +28,37 @@ function getWeatherData(city) {
         });
 }
 
+// (in progress) Creates function to append the data to the DOM. 
 function displayWeather(data) {
-    console.log(data)
+    //console.log(data)
+    var currentWeather = data.list[0];
+    //console.log(currentWeather)
+    var cityName = data.city.name;
+    var currentDate = new Date(currentWeather.dt * 1000);
+    var iconCode = currentWeather.weather[0].icon;
+    var temperature = currentWeather.main.temp;
+    var humidity = currentWeather.main.humidity;
+    var windSpeed = currentWeather.wind.speed;
+    var currentWeatherHTML = `
+        <h2>${cityName} (${currentDate}) <img src="http://openweathermap.org/img/wn/${iconCode}.png" alt="Weather Icon"></h2>
+        <p>Temperature: ${temperature} &deg;C</p>
+        <p>Humidity: ${humidity}%</p>
+        <p>Wind Speed: ${windSpeed} m/s</p>
+        `;
+    weatherData.innerHTML = currentWeatherHTML;
+    //console.log(weatherData)
+
+
+
+
+
+
+
+
+
+
+
+    
 }
+
+
