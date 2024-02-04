@@ -48,6 +48,24 @@ function displayWeather(data) {
     weatherData.innerHTML = currentWeatherHTML;
     //console.log(weatherData)
 
+    var forecastHTML = data.list.slice(1, 5).map(forecast => {
+        var forecastDate = new Date(forecast.dt * 1000);
+        var forecastIconCode = forecast.weather[0].icon;
+        var forecastTemperature = forecast.main.temp;
+        var forecastHumidity = forecast.main.humidity;
+        var forecastWindSpeed = forecast.wind.speed;
+        return `
+        <div class="forecast-tiem">
+            <p>${forecastDate.toLocaleDateString()}</p>
+            <img src="http://openweathermap.org/img/wn/${forecastIconCode}.png" alt"Weather Icon">
+            <p>Temp: ${forecastTemperature} &deg;C</p>
+                    <p>Humidity: ${forecastHumidity}%</p>
+                    <p>Wind Speed: ${forecastWindSpeed} m/s</p>
+         </div>
+        `;
+    }).join('');
+
+    forecast.innerHTML += `<div class="forecast">${forecastHTML}</div>`
 
 
 
@@ -58,7 +76,6 @@ function displayWeather(data) {
 
 
 
-    
 }
 
 
