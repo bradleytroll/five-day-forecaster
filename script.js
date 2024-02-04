@@ -35,7 +35,7 @@ function getWeatherData(city) {
             cityInput.value = "";
         })
         .catch(error => {
-            console.log('Error fetching weather data:', error);
+            alert('Error fetching weather data!');
         });
  
 }
