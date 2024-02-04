@@ -11,9 +11,40 @@ var apiKey = "d7d2daaf620c75d9e65a81dfbee535d2"
 var cityHistory = JSON.parse(localStorage.getItem('cityHistory')) || [];
 
 
+function updateHistory(cityName) {
+    if (!cityHistory.includes(cityName)) {
+        cityHistory.unshift(cityName); 
+        displayHistory();
+    }
+}
+// Creates function to get weather data. Makes request to the API and uses my apiKey to retrieve the data. The data is then set as an argument to the displayWeather function. 
+
+
+function getWeatherData(city) {
+    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('City not found')
+            }
+            return response.json();
+        })
+        .then(data => {
+            displayWeather(data);
+            updateHistory(city);
+            storeCityHistory();
+            cityInput.value = "";
+        })
+        .catch(error => {
+            console.log('Error fetching weather data:', error);
+        });
+ 
+}
+
+
 // INCOMPLETE ADD NOTES
 function displayHistory() {
-    historyDiv.innerHTML = "History"
+    historyDiv.innerHTML = "<h2>Search History</h2>"
     cityHistory.slice(0, 10).forEach(city => {
         var historyItem = document.createElement('div');
         historyItem.classList.add('history-item');
@@ -34,42 +65,17 @@ cityForm.addEventListener('submit', function(e) {
     if (cityName) {
         getWeatherData(cityName);
     }
+});
 
-
-// Creates function to get weather data. Makes request to the API and uses my apiKey to retrieve the data. The data is then set as an argument to the displayWeather function. 
-function getWeatherData(city) {
-    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            displayWeather(data);
-        })
-        .catch(error => {
-            console.log('Error fetching weather data:', error);
-        });
-    updateHistory(city);
-    storeCityHistory();
-}
-
-  
-
-
-
-function updateHistory(cityName) {
-    if (!cityHistory.includes(cityName)) {
-        cityHistory.unshift(cityName); 
-        displayHistory();
-    }
-}
 
 function storeCityHistory() {
     localStorage.setItem('cityHistory', JSON.stringify(cityHistory));
 }
-});
+
 
 // (in progress) Creates function to append the data to the DOM. 
 function displayWeather(data) {
-    console.log(data)
+    //console.log(data)
     forecast.innerHTML = ""
     var currentWeather = data.list[0];
     var cityName = data.city.name;
