@@ -67,13 +67,17 @@ button {
     margin-bottom: 20px;
 }
 
+#forecast h2 {
+    font-size: 30px;
+}
+
 #history {
     text-align: center;
     margin-top: 20px;
     border-radius: 8px;
     max-width: 600px;
     margin: 0 auto;
-    border: 5px;
+    border: 2px;
     border-color: black;
     border-style: solid;
     padding: 5px;
