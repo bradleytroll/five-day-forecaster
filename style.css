@@ -98,3 +98,65 @@ button {
     display: block;
     margin-right: 5px;
 }
+
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 90%;
+    }
+
+    form {
+        font-size: 18px;
+    }
+
+    label {
+        font-size: 20px;
+    }
+
+    #city-input {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    form {
+        font-size: 16px;
+    }
+
+    label {
+        font-size: 18px;
+    }
+
+    #city-input {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+
+    #history {
+        max-width: 90%;
+    }
+
+    .history-item {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    #weather-data {
+        padding: 10px;
+    }
+
+    .forecast-item {
+        font-size: 14px;
+        padding: 8px;
+        margin: 0 2px;
+    }
+}
