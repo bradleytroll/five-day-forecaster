@@ -38,7 +38,7 @@ cityForm.addEventListener('submit', function(e) {
 
 // Creates function to get weather data. Makes request to the API and uses my apiKey to retrieve the data. The data is then set as an argument to the displayWeather function. 
 function getWeatherData(city) {
-    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`
+    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
@@ -69,7 +69,6 @@ function storeCityHistory() {
 
 // (in progress) Creates function to append the data to the DOM. 
 function displayWeather(data) {
-    console.log(data)
     forecast.innerHTML = ""
     var currentWeather = data.list[0];
     var cityName = data.city.name;
@@ -77,46 +76,32 @@ function displayWeather(data) {
     var iconCode = currentWeather.weather[0].icon;
     var humidity = currentWeather.main.humidity;
     var windSpeed = currentWeather.wind.speed;
-    var temperatureValue = currentWeather.main.temp_max;
-    var temperatureUnit = data.list[0].main.temp_max >= 100 ? 'F' : 'C';
-    if (temperatureUnit === 'C') {
-        temperatureValue = (temperatureValue * 9/5) + 32;
-    }
+    var temperature = currentWeather.main.temp;
     var currentWeatherHTML = `
         <h1>Today's Weather</h1>
         <h2>${cityName} (${currentDate.toLocaleDateString()}) <img src="http://openweathermap.org/img/wn/${iconCode}.png" alt="Weather Icon"></h2>
-        <p>Temperature: ${temperatureValue.toFixed(2)} &deg;${temperatureUnit}</p>
+        <p>Temperature: ${temperature} &deg; F</p>
         <p>Humidity: ${humidity}%</p>
         <p>Wind Speed: ${windSpeed} m/s</p>
         `;
     weatherData.innerHTML = currentWeatherHTML;
-    //console.log(weatherData)
-
-    var forecastHTML = data.list.slice(1, 6).map((forecast, index) => {
+       var forecastHTML = data.list.slice(1, 6).map((forecast, index) => {
         var forecastDate = new Date(currentDate);
         forecastDate.setDate(forecastDate.getDate() + index + 1);
         var forecastIconCode = forecast.weather[0].icon;
         var forecastHumidity = forecast.main.humidity;
         var forecastWindSpeed = forecast.wind.speed;
-        var forecastTemperatureValue = forecast.main.temp_max;
-        console.log(forecastTemperatureValue)
-        var forecastTemperatureUnit = data.list[0].main.temp_max >= 100 ? 'F' : 'C';
-        if (forecastTemperatureUnit === 'C') {
-            forecastTemperatureValue = (forecastTemperatureValue * 9/5) + 32;
-        }
+        var forecastTemperature = forecast.main.temp;
         return `
         <div class="forecast-item">
             <p>${forecastDate.toLocaleDateString()}</p>
             <img src="http://openweathermap.org/img/wn/${forecastIconCode}.png" alt="Weather Icon">
-            <p>Temp: ${forecastTemperatureValue.toFixed(2)} &deg;F</p>
+            <p>Temp: ${forecastTemperature} &deg;F</p>
                     <p>Humidity: ${forecastHumidity}%</p>
                     <p>Wind Speed: ${forecastWindSpeed} m/s</p>
             </div>`;
     }).join('');
-
     forecast.innerHTML += `<div class="forecast">${forecastHTML}</div>`
-    
-
-}
+ }
 });
 
