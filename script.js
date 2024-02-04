@@ -72,7 +72,7 @@ function storeCityHistory() {
 
 // Creates function to append weather data to the DOM. Takes the data from the fetch request, creates various variables attached to data from the request results, and appends the data to the DOM, including a div for current weather adn a divs for the five day forecasts. 
 function displayWeather(data) {
-    console.log(data)
+    //console.log(data)
     forecast.innerHTML = ""
     var currentWeather = data.list[0];
     var cityName = data.city.name;
@@ -90,7 +90,7 @@ function displayWeather(data) {
         <p>Wind Speed: ${windSpeed} m/s</p>
         `;
     weatherData.innerHTML = currentWeatherHTML;
-        forecast.innerHTML = "<h2>Your Five-Day Forecast:</h2>"
+        forecast.innerHTML = "<h2>Five-Day Forecast</h2>"
         var forecastHTML = data.list.slice(1, 6).map((forecast, index) => {
         var forecastDate = new Date(currentDate);
         forecastDate.setDate(forecastDate.getDate() + index + 1);
