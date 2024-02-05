@@ -84,7 +84,7 @@ function displayWeather(data) {
     weatherData.style.backgroundColor = '#3498db';
     var currentWeatherHTML = `
         <h1>Today's Weather</h1>
-        <h2>${cityName} <br> ${currentDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} <br> <img src="http://openweathermap.org/img/wn/${iconCode}.png" alt="Weather Icon"></h2>
+        <h2>${cityName} <br> ${currentDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} <br> <img src="https://openweathermap.org/img/wn/${iconCode}.png" alt="Weather Icon"></h2>
         <p>Temperature: ${temperature}&deg; F</p>
         <p>Humidity: ${humidity}%</p>
         <p>Wind Speed: ${windSpeed} m/s</p>
@@ -101,7 +101,7 @@ function displayWeather(data) {
         return `
         <div class="forecast-item">
                 <p>${forecastDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p> <br>
-            <img src="http://openweathermap.org/img/wn/${forecastIconCode}.png" alt="Weather Icon">
+            <img src="https://openweathermap.org/img/wn/${forecastIconCode}.png" alt="Weather Icon">
             <p>Temp: ${forecastTemperature}&deg; F</p>
                     <p>Humidity: ${forecastHumidity}%</p>
                     <p>Wind Speed: ${forecastWindSpeed} m/s</p>
